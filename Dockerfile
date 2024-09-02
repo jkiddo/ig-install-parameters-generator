@@ -5,13 +5,12 @@ FROM alpine:latest
 RUN apk add --no-cache \
     curl \
     jq \
-    coreutils \
     bash
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the script into the container
+# Copy the script into the container's working directory
 COPY fetcher.sh .
 
 # Make the script executable

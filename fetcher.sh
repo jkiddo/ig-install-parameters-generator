@@ -13,7 +13,7 @@ file_url="$1"
 file_name="downloaded_file"
 
 # Download the file using curl
-curl -o "$file_name" "$file_url"
+curl -s -o "$file_name" "$file_url"
 
 # Base64 encode the file content saving it to a temp file
 base64 "$file_name" > base64_content.txt
@@ -22,5 +22,5 @@ base64 "$file_name" > base64_content.txt
 json_data=$(jq -n --rawfile base64_content base64_content.txt \
             '{ "resourceType": "Parameters", "parameter": [ { "name": "npmContent", "valueBase64Binary": $base64_content }]}')
 
-
-echo "$json_data" > parameters.json
+# Print the JSON data to the console
+echo "$json_data"
